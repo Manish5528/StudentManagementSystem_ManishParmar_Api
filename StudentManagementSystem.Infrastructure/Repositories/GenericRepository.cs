@@ -85,5 +85,7 @@ namespace StudentManagementSystem.Infrastructure.Repositories
             if (predicate == null) throw new ArgumentNullException(nameof(predicate));
             return await _set.AnyAsync(predicate);
         }
+
+        public async Task<IEnumerable<T>> GetAllAsync() => await _set.ToListAsync();
     }
 }
