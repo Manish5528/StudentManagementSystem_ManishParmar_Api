@@ -37,7 +37,7 @@ namespace StudentManagementSystem.Application.Services.Implementation
             int count = 0;
             foreach (CreateCourseDto dto in records)
             {
-                bool exists = await _courseRepo.ExistsAsync(c => c.Name.Equals(dto.Name, StringComparison.CurrentCultureIgnoreCase));
+                bool exists = await _courseRepo.ExistsAsync(c => c.Name.ToLower() == dto.Name.ToLower());
                 if (dto.Description?.Length > 100)
                     throw new InvalidOperationException("Description exceeds 100 characters.");
                 if (string.IsNullOrWhiteSpace(dto.Name))
